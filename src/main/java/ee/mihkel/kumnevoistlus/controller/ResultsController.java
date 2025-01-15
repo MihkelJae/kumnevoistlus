@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class ResultsController {
 
@@ -129,31 +130,7 @@ public class ResultsController {
         calculateResults.ifPresent(r -> r.setJavelinThrow(r.getJavelinThrow() * 1.3));
         calculateResults.ifPresent(r -> r.setFifteenHundredMeters(r.getFifteenHundredMeters() * 1.3));
 
-
         return calculateResults;
     }
-
-
-
-//    @PostMapping("results/{id}")
-//    public List<Results> addOneResult(@RequestParam Long id, @RequestParam Double score) {
-//        Results results = resultsRepository.findById(id).orElseThrow();
-//
-//        String resultType = results.getClass().getSimpleName();
-//
-//
-//        switch (resultType) {
-//            case "hundredMeters" -> resultsRepository.save(id, score);
-//            case "longJump" -> results.setLongJump(score);
-//            case "shotPut" -> results.setShotPut(score);
-//            default -> throw new IllegalArgumentException("Unsupported result type: " + resultType);
-//        }
-//
-////        resultsRepository.save(results);
-//        return resultsRepository.findAll();
-//    }
-
-
-
 
 }

@@ -24,7 +24,6 @@ public class Competitors {
     private String country;
     private int age;
 
-    @ManyToOne
-    private Results results;
+
 
 }

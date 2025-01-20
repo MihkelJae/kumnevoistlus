@@ -29,4 +29,7 @@ public class Results {
     private double poleVault;
     private double javelinThrow;
     private double fifteenHundredMeters;
+
+    @ManyToOne
+    private Competitors competitors;
 }

@@ -15,7 +15,7 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Competitors {
+public class Competitor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

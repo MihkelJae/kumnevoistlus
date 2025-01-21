@@ -32,6 +32,12 @@ public class ResultsController {
         return resultsRepository.findAll();
     }
 
+    @PutMapping("results")
+    public List<Results> updateResults(@RequestBody Results results) {
+        resultsRepository.save(results);
+        return resultsRepository.findAll();
+    }
+
 //    @PatchMapping("hundredMeters")
 //    public List<Results> addHundredMeters(@RequestParam Long id, @RequestParam Double hundredMeters) {
 //        Results results = resultsRepository.findById(id).orElseThrow();

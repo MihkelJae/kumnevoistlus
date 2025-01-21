@@ -31,5 +31,5 @@ public class Results {
     private double fifteenHundredMeters;
 
     @ManyToOne
-    private Competitors competitors;
+    private Competitor competitor;
 }

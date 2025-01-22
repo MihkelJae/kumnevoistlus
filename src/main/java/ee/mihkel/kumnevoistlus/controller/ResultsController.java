@@ -179,36 +179,7 @@ public class ResultsController {
 //        calculateResults.ifPresent(r -> r.setFifteenHundredMeters(r.getFifteenHundredMeters() * 1.3));
 
         calculateResults.ifPresent(r -> {
-            if (r.getHundredMeters() != 0) {
-                r.setHundredMeters(r.getHundredMeters() * 1.3);
-            }
-            if (r.getLongJump() != 0) {
-                r.setLongJump(r.getLongJump() * 1.3);
-            }
-            if (r.getShotPut() != 0) {
-                r.setShotPut(r.getShotPut() * 1.3);
-            }
-            if (r.getHighJump() != 0) {
-                r.setHighJump(r.getHighJump() * 1.3);
-            }
-            if (r.getFourHundredMeters() != 0) {
-                r.setFourHundredMeters(r.getFourHundredMeters() * 1.3);
-            }
-            if (r.getHurdles() != 0) {
-                r.setHurdles(r.getHurdles() * 1.3);
-            }
-            if (r.getDiscusThrow() != 0) {
-                r.setDiscusThrow(r.getDiscusThrow() * 1.3);
-            }
-            if (r.getPoleVault() != 0) {
-                r.setPoleVault(r.getPoleVault() * 1.3);
-            }
-            if (r.getJavelinThrow() != 0) {
-                r.setJavelinThrow(r.getJavelinThrow() * 1.3);
-            }
-            if (r.getFifteenHundredMeters() != 0) {
-                r.setFifteenHundredMeters(r.getFifteenHundredMeters() * 1.3);
-            }
+            calculateResult(r, r);
         });
 
 
@@ -221,36 +192,7 @@ public class ResultsController {
         AtomicReference<Double> totalScore = new AtomicReference<>((double) 0);
 
         calculateResults.ifPresent(r -> {
-            if (r.getHundredMeters() != 0) {
-                r.setHundredMeters(r.getHundredMeters() * 1.3);
-            }
-            if (r.getLongJump() != 0) {
-                r.setLongJump(r.getLongJump() * 1.3);
-            }
-            if (r.getShotPut() != 0) {
-                r.setShotPut(r.getShotPut() * 1.3);
-            }
-            if (r.getHighJump() != 0) {
-                r.setHighJump(r.getHighJump() * 1.3);
-            }
-            if (r.getFourHundredMeters() != 0) {
-                r.setFourHundredMeters(r.getFourHundredMeters() * 1.3);
-            }
-            if (r.getHurdles() != 0) {
-                r.setHurdles(r.getHurdles() * 1.3);
-            }
-            if (r.getDiscusThrow() != 0) {
-                r.setDiscusThrow(r.getDiscusThrow() * 1.3);
-            }
-            if (r.getPoleVault() != 0) {
-                r.setPoleVault(r.getPoleVault() * 1.3);
-            }
-            if (r.getJavelinThrow() != 0) {
-                r.setJavelinThrow(r.getJavelinThrow() * 1.3);
-            }
-            if (r.getFifteenHundredMeters() != 0) {
-                r.setFifteenHundredMeters(r.getFifteenHundredMeters() * 1.3);
-            }
+            calculateResult(r, r);
             totalScore.set(r.getHundredMeters() + r.getLongJump() + r.getShotPut()
                     + r.getHighJump() + r.getFourHundredMeters() + r.getHurdles()
                     + r.getDiscusThrow() + r.getPoleVault() + r.getJavelinThrow()
@@ -259,4 +201,52 @@ public class ResultsController {
         return totalScore.get();
     }
 
+    @GetMapping("total2/{id}")
+    public double  getTotalScoreTwo(@PathVariable Long id) {
+        Optional<Results> calculateResultsOptional = resultsRepository.findById(id);
+        Results r = calculateResultsOptional.orElseThrow();
+
+         Results newResult = new Results();
+
+        calculateResult(r, newResult);
+
+
+        return (newResult.getHundredMeters() + newResult.getLongJump() + newResult.getShotPut()
+                + newResult.getHighJump() + newResult.getFourHundredMeters() + newResult.getHurdles()
+                + newResult.getDiscusThrow() + newResult.getPoleVault() + newResult.getJavelinThrow()
+                + newResult.getFifteenHundredMeters());
+    }
+
+    public void calculateResult(Results r, Results newResult) {
+        if (r.getHundredMeters() != 0) {
+            newResult.setHundredMeters(r.getHundredMeters() * 1.3);
+        }
+        if (r.getLongJump() != 0) {
+            newResult.setLongJump(r.getLongJump() * 1.3);
+        }
+        if (r.getShotPut() != 0) {
+            newResult.setShotPut(r.getShotPut() * 1.3);
+        }
+        if (r.getHighJump() != 0) {
+            newResult.setHighJump(r.getHighJump() * 1.3);
+        }
+        if (r.getFourHundredMeters() != 0) {
+            newResult.setFourHundredMeters(r.getFourHundredMeters() * 1.3);
+        }
+        if (r.getHurdles() != 0) {
+            newResult.setHurdles(r.getHurdles() * 1.3);
+        }
+        if (r.getDiscusThrow() != 0) {
+            newResult.setDiscusThrow(r.getDiscusThrow() * 1.3);
+        }
+        if (r.getPoleVault() != 0) {
+            newResult.setPoleVault(r.getPoleVault() * 1.3);
+        }
+        if (r.getJavelinThrow() != 0) {
+            newResult.setJavelinThrow(r.getJavelinThrow() * 1.3);
+        }
+        if (r.getFifteenHundredMeters() != 0) {
+            newResult.setFifteenHundredMeters(r.getFifteenHundredMeters() * 1.3);
+        }
+    }
 }
